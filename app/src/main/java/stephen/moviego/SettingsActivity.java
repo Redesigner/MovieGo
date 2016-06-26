@@ -5,17 +5,7 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-/**
- * Created by Stephen on 6/22/2016.
- */
 public class SettingsActivity extends PreferenceActivity
     implements Preference.OnPreferenceChangeListener{
         @Override
@@ -43,10 +33,4 @@ public class SettingsActivity extends PreferenceActivity
         }
     }
 }
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main,menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
 

@@ -54,14 +54,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTabs(){
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        if(tabHost==null){
+            return;
+        }
         tabHost.setup();
         TabHost.TabSpec spec = tabHost.newTabSpec("left");
         spec.setContent(R.id.tabContainer1);
-        spec.setIndicator("Top Rated");
+        spec.setIndicator("Popular");
         tabHost.addTab(spec);
         TabHost.TabSpec spec2 = tabHost.newTabSpec("right");
         spec2.setContent(R.id.tabContainer2);
-        spec2.setIndicator("Popular");
+        spec2.setIndicator("Top Rated");
         tabHost.addTab(spec2);
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override

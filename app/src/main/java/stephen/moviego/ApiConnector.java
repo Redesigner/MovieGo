@@ -1,10 +1,8 @@
 package stephen.moviego;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -20,11 +18,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by Stephen on 6/22/2016.
- */
 class getJSON extends AsyncTask<String,Void,JSONObject> {
     private Context mContext = null;
+    protected final String tag ="getJSON";
+
     public getJSON(Context context){//potential memory leak? Look for solution
         mContext = context;
     }
@@ -65,11 +62,12 @@ class getJSON extends AsyncTask<String,Void,JSONObject> {
             }
             String JSONString = buffer.toString();
             jsonObject = new JSONObject(JSONString);
-            //Log.v("ApiConnector",url.toString());//remove
         } catch (IOException e) {
             Log.e("ApiConnector", "URL was malformed");
+            return null;
         } catch (JSONException e) {
             Log.e("ApiConnector", "Failed to create JSON object");
+            return null;
         } finally {
             if (connection != null) {
                 connection.disconnect();
@@ -91,8 +89,11 @@ class getJSON extends AsyncTask<String,Void,JSONObject> {
         super.onPostExecute(jsonObject);
     }
 }
+
+
 public class ApiConnector {
 
+    protected final String tag ="ApiConnector";
 
     public static ArrayList<String> getPosterUris(String setting, Context context){
         getJSON collectData = new getJSON(context);
@@ -102,14 +103,9 @@ public class ApiConnector {
             JSONArray results = jsonObject.getJSONArray("results");
             for(int i=0;i<results.length();i++){
                 result.add(i,results.getJSONObject(i).getString("poster_path"));
-                Log.v("ApiConnector", results.getJSONObject(i).getString("poster_path"));//remove
             }
-        }catch (JSONException e){
-            Log.e("ApiConnector",e.getMessage());
-        }catch(ExecutionException e){
-            Log.e("ApiConnector", e.getMessage());
-        }catch(InterruptedException e){
-            Log.e("ApiConnector", e.getMessage());
+        }catch (JSONException|ExecutionException|InterruptedException e){
+            Log.e(tag,e.getMessage());
         }
         return result;
     }
@@ -121,12 +117,9 @@ public class ApiConnector {
             JSONObject jsonObject = collectData.execute(setting).get();
             JSONArray mainArray = jsonObject.getJSONArray("results");
             result = mainArray.getJSONObject(index);
-        }catch (JSONException e){
-            Log.e("ApiConnector",e.getMessage());
-        }catch(ExecutionException e){
-            Log.e("ApiConnector", e.getMessage());
-        }catch(InterruptedException e){
-            Log.e("ApiConnector", e.getMessage());
+        }catch (JSONException|ExecutionException|InterruptedException e){
+            Log.e(tag,e.getMessage());
+            return null;
         }
         return result;
     }

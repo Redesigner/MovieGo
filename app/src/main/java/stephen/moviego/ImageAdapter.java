@@ -1,10 +1,7 @@
 package stephen.moviego;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -44,7 +41,7 @@ public class ImageAdapter extends BaseAdapter {
         ImageView imageView;
         DisplayMetrics displayMetrics = mContext.getResources().getDisplayMetrics();
         float dpWidth = (displayMetrics.widthPixels)/3-8;
-        float dpHeight =  dpWidth * 1.5f;
+        float dpHeight =  dpWidth * 1.5f; //get a size of 3:2
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
@@ -61,13 +58,11 @@ public class ImageAdapter extends BaseAdapter {
             imageView.setLayoutParams(new GridView.LayoutParams(Math.round(dpWidth),Math.round(dpHeight)));
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setPadding(3, 3, 3, 3);
-            //Log.e("tag","thing happened");
         } else {
             imageView = (ImageView) convertView;
         }
         Uri imageLocation = Uri.parse("http://image.tmdb.org/t/p/w185/")
                 .buildUpon()
-                //.appendPath("original/")
                 .appendEncodedPath(drawableUris.get(position))
                 .build();
         Log.e("tag",imageLocation.toString());
