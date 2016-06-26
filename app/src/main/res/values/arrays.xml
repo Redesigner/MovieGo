@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="list_type_entries">
+        <item>@string/list_type_popular</item>
+        <item>@string/list_type_top_rated</item>
+    </array>
+    <array name="list_type_user_entries">
+        <item>@string/list_type_popularv</item>
+        <item>@string/list_type_top_ratedv</item>
+    </array>
+</resources>

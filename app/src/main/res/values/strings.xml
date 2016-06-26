@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MovieGo</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_movie_information">Movie information</string>
+
+    <!--Settings Information-->
+    <string name="list_type_id">list_type</string>
+    <string name="list_type_key">listtype</string>
+    <string name="list_type_title">Sort by</string>
+    <string name="list_type_popular">popular</string>
+    <string name="list_type_top_rated">top_rated</string>
+    <string name="list_type_popularv">Popular</string>
+    <string name="list_type_top_ratedv">Top rated</string>
+
+</resources>
